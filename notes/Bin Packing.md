@@ -36,3 +36,4 @@ Dados n itens de tamanho s1, s2, s3, ..., empacotá-los no menor número de caix
 - https://en.wikipedia.org/wiki/Bin_packing_problem
 - https://www.youtube.com/watch?v=qbuMPi44bVQ
 - https://freedium.cfd/https://towardsdatascience.com/np-what-complexity-types-of-optimization-problems-explained-558d43276044
+- https://freedium.cfd/https://medium.com/swlh/exploring-the-bin-packing-problem-f54a93ebdbe5
