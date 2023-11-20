@@ -30,9 +30,6 @@ Dados n itens de tamanho s1, s2, s3, ..., empacotá-los no menor número de caix
 	- First-Fit Decreasing
 	- Best Fit Decreasing
 
-
-
-
 ### Links Úteis
 - https://developers.google.com/optimization/pack/bin_packing?hl=pt-br
 - https://www.geeksforgeeks.org/bin-packing-problem-minimize-number-of-used-bins/
