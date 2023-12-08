@@ -2,6 +2,7 @@ from itertools import permutations
 import random
 import time
 import numpy as np
+import json
 
 
 def get_all_permutations(items, length):
@@ -65,15 +66,16 @@ def guloso(items, capacity):
             if len(sorted_items) > 0:
                 min_item = sorted_items[0]
 
-             # vai adicionando novos bins conforme o necessario
-            if len(bins[-1]) > 0:
-                bins.append([])
-
             if min_item <= free_space:
                 b.append(min_item)
-                sorted_items.remove(min_item)
+                if len(sorted_items) > 0:
+                    sorted_items.remove(min_item)
             else:
                 isNotFull = False
+
+            # vai adicionando novos bins conforme o necessario
+            if len(bins[-1]) > 0:
+                bins.append([])
 
     space_waste = sum(capacity - sum(bin_contents) for bin_contents in bins)
 
@@ -84,7 +86,6 @@ def print_solution(solution, waste, label, itens, tempo):
     print('*' * 20)
     print(label)
     print('*' * 20)
-    print(f"Itens analisados: {itens}")
     print(f"Tempo de execução: {tempo}")
 
     for i, bin_contents in enumerate(solution):
@@ -96,45 +97,53 @@ def print_solution(solution, waste, label, itens, tempo):
 def get_random_array(max_range, n):
     return [random.randint(1, max_range) for _ in range(n)]
 
-capacity = 10
+
+capacity = 100
 brute_force_time = []
-guloso_time = []
-n_loops = 5
-n_items = 10
-min_waste_fb = 100000
-min_waste_g = 100000
+greedy_time = []
+n_loops = 3
+n_items = 600000
+metrics_dict = {}
 
 
-# gerar os mesmos conjuntos de objetos para que os algoritmos possa utilizar
-itens_set = []
-print("Gerando os conjuntos que serao usados")
 for i in range(n_loops):
-    itens_set.append(get_random_array(capacity, n_items))
+    print("#"*50)
+    items_to_pack = get_random_array(53, n_items)
+    #print(f"Itens: {items_to_pack}")
+    metrics_dict[i] = {}
 
-for items_to_pack in itens_set:
-    items_permutations = get_all_permutations(items_to_pack, len(items_to_pack))
+    #################### força bruta
+    #print("Gerando todas as permutações")
+    #items_permutations = get_all_permutations(items_to_pack, len(items_to_pack))
 
-    inicio = time.time()
-    solution, waste = bruteforce(items_permutations, capacity)
-    fim = time.time()
-    print_solution(solution, waste, 'força bruta', items_to_pack, fim-inicio)
+    #print("Iniciando o força bruta")
+    #inicio = time.time()
+    #solution, waste = bruteforce(items_permutations, capacity)
+    #total_time = time.time()-inicio
+    #total_time_fmt = f"{total_time:.6f}"
+
+    #print_solution(solution, waste, 'força bruta', items_to_pack, total_time_fmt)
     
-    brute_force_time.append(fim-inicio)
-    if waste < min_waste_fb:
-        min_waste_fb = waste
+    #brute_force_time.append(total_time)
+    #metrics_dict[i]["brute_force"] = {"itens":items_to_pack, "total_time": total_time_fmt, "waste": waste, "solution":solution}
 
-# guloso
-for items_to_pack in itens_set:
+    #################### guloso
+    print("Iniciando o guloso")
     inicio = time.time()
 
     solution, waste = guloso(items_to_pack, capacity)
-    fim = time.time()
+    total_time = time.time()-inicio
+    total_time_fmt = f"{total_time:.6f}"
 
-    print_solution(solution, waste, 'guloso', items_to_pack, fim-inicio)
-    guloso_time.append(fim-inicio)
-    if waste < min_waste_g:
-        min_waste_g = waste
+    #print_solution(solution, waste, 'greedy', items_to_pack, total_time_fmt)
+    greedy_time.append(total_time)
+    #metrics_dict[i]["greedy"] = {"itens":items_to_pack, "total_time": total_time_fmt, "waste": waste, "solution":solution}
 
 
-print(f"Força bruta: \n\t Min waste: {min_waste_fb } \n\t Media:{np.mean(brute_force_time)} \n\t Min:{np.min(brute_force_time)} \n\t Max:{np.max(brute_force_time)}")
-print(f"Guloso: \n\t Min waste: {min_waste_g} \n\t Media:{np.mean(guloso_time)} \n\t Min:{np.min(guloso_time)} \n\t Max:{np.max(guloso_time)}")
+
+
+#print(f"Força bruta: \n\t Media:{np.mean(brute_force_time)} \n\t Min:{np.min(brute_force_time)} \n\t Max:{np.max(brute_force_time)}")
+print(f"Guloso: \n\t Media:{np.mean(greedy_time)} \n\t Min:{np.min(greedy_time)} \n\t Max:{np.max(greedy_time)}")
+#with open(f"result-{n_loops}-{n_items}.json", 'w') as arquivo:
+#    json.dump(metrics_dict, arquivo)
+#print("Arquivo  salvo! ")
