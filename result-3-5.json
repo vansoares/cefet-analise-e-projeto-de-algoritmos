@@ -1,1 +1,1 @@
-{"0": {"brute_force": {"itens": [86, 29, 15, 27, 82], "total_time": "0.000660", "waste": 61, "solution": [[86], [29, 15, 27], [82]]}, "greedy": {"itens": [86, 29, 15, 27, 82], "total_time": "0.000009", "waste": 61, "solution": [[15, 27, 29], [82], [86]]}}}
+{"0": {"brute_force": {"itens": [54, 53, 14, 74, 3], "total_time": "0.000272", "waste": 102, "solution": [[54, 14, 3], [53], [74]]}, "greedy": {"itens": [54, 53, 14, 74, 3], "total_time": "0.000005", "waste": 102, "solution": [[3, 14, 53], [54], [74]]}}}
