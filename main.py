@@ -46,7 +46,7 @@ for items_to_pack in items:
     items_permutations = brute_force.get_all_permutations(items_to_pack, len(items_to_pack))
 
     inicio = time.time()
-    solution, waste = brute_force.run(items_permutations, capacity)
+    solution, waste = brute_force.run_with_weight(items_permutations, capacity)
     total_time = time.time()-inicio
     total_time_fmt = f"{total_time:.6f}"
 
@@ -61,7 +61,7 @@ for items_to_pack in items:
     print("Iniciando o guloso")
     inicio = time.time()
 
-    solution, waste = greedy.run(items_to_pack, capacity)
+    solution, waste = greedy.run_with_weight(items_to_pack, capacity)
     total_time = time.time()-inicio
     total_time_fmt = f"{total_time:.6f}"
 

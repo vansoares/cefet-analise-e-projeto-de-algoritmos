@@ -1,3 +1,4 @@
 notes/.obsidian/
 venv/
 .idea/
+__pycache__/

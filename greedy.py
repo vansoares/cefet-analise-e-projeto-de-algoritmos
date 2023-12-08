@@ -4,7 +4,7 @@ import time
 import numpy as np
 import json
 
-def run(items, capacity):
+def run_with_weight(items, capacity):
     sorted_items = sorted(items)
     bins = [[]]
 

@@ -8,7 +8,7 @@ import json
 def get_all_permutations(items, length):
     return list(permutations(items, length))
 
-def run(items_permutations, capacity):
+def run_with_weight(items_permutations, capacity):
     best_solution = None
     best_waste = 1000
 
