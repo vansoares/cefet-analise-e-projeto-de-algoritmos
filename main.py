@@ -99,7 +99,7 @@ def run_with_values():
     brute_force_time = []
     greedy_time = []
     n_loops = 30
-    n_items = 5  
+    n_items = 11 
     metrics_dict = {}
     i = 0
     metrics_dict[i] = {}
@@ -114,15 +114,15 @@ def run_with_values():
         print(f"Iteração n {i}")
         print("-"*50)
 
-        ## força bruta ##
-        inicio = time.time()
-        solution, waste = brute_force.run_with_values(items_to_pack, capacity)
-        total_time_fmt = f"{time.time()-inicio:.6f}"
+        ### força bruta ##
+        #inicio = time.time()
+        #solution, waste = brute_force.run_with_values(items_to_pack, capacity)
+        #total_time_fmt = f"{time.time()-inicio:.6f}"
 
-        print_solution(solution, waste, 'força bruta', items_to_pack, total_time_fmt)
+        #print_solution(solution, waste, 'força bruta', items_to_pack, total_time_fmt)
         
-        brute_force_time.append(float(total_time_fmt))
-        metrics_dict[i]["brute_force"] = {"itens":items_to_pack, "total_time": total_time_fmt, "waste": waste, "solution":solution}
+        #brute_force_time.append(float(total_time_fmt))
+        #metrics_dict[i]["brute_force"] = {"itens":items_to_pack, "total_time": total_time_fmt, "waste": waste, "solution":solution}
 
 
         ## greedy ##
@@ -141,5 +141,5 @@ def run_with_values():
 
 
 
-run_with_weights()
-
+#run_with_weights()
+run_with_values()
