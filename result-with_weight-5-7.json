@@ -1,0 +1,1 @@
+{"0": {"brute_force": {"itens": [2, 4, 4, 1, 3, 4, 2], "total_time": "0.011785", "waste": 0, "solution": [[2, 4, 4], [1, 3, 4, 2]]}, "greedy": {"itens": [2, 4, 4, 1, 3, 4, 2], "total_time": "0.000005", "waste": 6, "solution": [[1, 2, 2, 3], [4, 4], [4, 4]]}}}
